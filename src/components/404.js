@@ -16,7 +16,7 @@ const ErrorPage = () => {
 
     // fetch user 
     function fetchUser() {
-        fetch(`http://localhost:8000/users/${userObject.user}`, { mode: 'cors', method: 'GET' })
+        fetch(`https://cryptic-earth-09230.herokuapp.com/users/${userObject.user}`, { mode: 'cors', method: 'GET' })
             .then(res => res.json())
             .then(data => {
                 if(data.user.profile_pic){

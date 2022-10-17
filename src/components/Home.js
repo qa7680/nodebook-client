@@ -28,7 +28,7 @@ const Home = () => {
     const loginUser = (e) => {
         setErrorMsg(false);
         e.preventDefault();
-            fetch('http://localhost:8000/login', {
+            fetch('https://cryptic-earth-09230.herokuapp.com/login', {
             method: 'POST', mode: 'cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
                 email: emailField,
                 password: passField
@@ -64,7 +64,7 @@ const Home = () => {
         setEmailField('usertest@mail.com');
         setPassField('password');
         setTimeout(() => {
-        fetch('http://localhost:8000/login', {
+        fetch('https://cryptic-earth-09230.herokuapp.com/login', {
             method: 'POST', mode: 'cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
                 email: 'usertest@mail.com',
                 password: 'password'
@@ -108,7 +108,7 @@ const Home = () => {
         form.append('image', profilePic);
 
         if(profilePic===false || profilePic===undefined){
-            fetch('http://localhost:8000/signup/noimage', {
+            fetch('https://cryptic-earth-09230.herokuapp.com/signup/noimage', {
             method: 'POST', mode: 'cors', body: form , headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
                 email: signEmail,
                 first_name: signFirstName,
@@ -136,7 +136,7 @@ const Home = () => {
             })    
             
         }else{
-            fetch('http://localhost:8000/signup', {
+            fetch('https://cryptic-earth-09230.herokuapp.com/signup', {
             method: 'POST', mode: 'cors', body: form
         })
             .then(res => res.json())
