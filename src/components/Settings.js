@@ -106,7 +106,7 @@ const Settings = () => {
                 <h4 class="card-title"><strong>Settings</strong></h4>
                 <div>
                     <h5>Deleting Your Account</h5>
-                    {disableBtn && <p>(This is account is a test account. It can not be deleted.)</p>}
+                    {disableBtn && <p>(This is a test account. It can not be deleted.)</p>}
                     <hr />
                 </div>
                 <p>

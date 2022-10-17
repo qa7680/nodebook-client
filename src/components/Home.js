@@ -4,7 +4,7 @@ import UserDashboard from './UserDashboard';
 import { UserContext } from "../UserContext";
 import { useNavigate } from "react-router-dom";
 import imageCompression from 'browser-image-compression';
-
+import { FacebookLoginButton } from "react-social-login-buttons";
 
 const Home = () => {
 
@@ -18,11 +18,15 @@ const Home = () => {
     const [showSignUp, setShowSignUp] = useState(false);
     const [dob, setDob] = useState('');
     const [profilePic, setProfilePic] = useState(false);
+    const [errorMsg, setErrorMsg] = useState(false);
+    const [signupError, setSignupError] = useState([]);
+    const [signupSuccess, setSignupSuccess] = useState('');
 
     const {userObject, setUserObject} = useContext(UserContext);
     
     // Login handle
     const loginUser = (e) => {
+        setErrorMsg(false);
         e.preventDefault();
             fetch('http://localhost:8000/login', {
             method: 'POST', mode: 'cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
@@ -31,7 +35,7 @@ const Home = () => {
             })
         })
             .then(res => res.json())
-            .then(data => {
+            .then(data => {                
                 if(data.user !== false){
                     const user_id_token = {
                         user: data.user._id,
@@ -41,12 +45,22 @@ const Home = () => {
                     setUserObject(JSON.parse(localStorage.getItem('user')));
                     setEmailField('');
                     setPassField('');
+                    setErrorMsg(false);
+                    setSignEmail('');
+                    setSignFirstName('');
+                    setSignLastName('');
+                    setSignPassword('');
+                    setSignConfirmPassword('');
+                    setDob('');
+                    setSignupError([]);
                 }
+                if(data.error) { setErrorMsg(data.error.message) };
             });        
     };
 
     // guest login
     function guestLogin(e) {
+        setErrorMsg(false);
         setEmailField('usertest@mail.com');
         setPassField('password');
         setTimeout(() => {
@@ -66,6 +80,13 @@ const Home = () => {
                 setUserObject(JSON.parse(localStorage.getItem('user')));
                 setEmailField('');
                 setPassField('');
+                setSignEmail('');
+                setSignFirstName('');
+                setSignLastName('');
+                setSignPassword('');
+                setSignConfirmPassword('');
+                setDob('');   
+                setSignupError([]);             
             });
         }, 500)
     };
@@ -73,6 +94,9 @@ const Home = () => {
     // Sign up handle
     const registerUser = (e) => {
         e.preventDefault();
+
+        setSignupSuccess(false);
+        setSignupError([]);
 
         const form = new FormData();
         form.append('email', signEmail);
@@ -95,14 +119,42 @@ const Home = () => {
             })
         })
             .then(res => res.json())
-            .then(data => console.log(data))    
+            .then(data => {
+                if(data.emailError){
+                    setSignupError([{msg: data.emailError}])
+                }else if(data.errors) { 
+                    setSignupError(data.errors)
+                }else{
+                    setSignEmail('');
+                    setSignFirstName('');
+                    setSignLastName('');
+                    setSignPassword('');
+                    setSignConfirmPassword('');
+                    setDob('');
+                    setSignupSuccess(data.success_message)
+                }
+            })    
             
         }else{
             fetch('http://localhost:8000/signup', {
             method: 'POST', mode: 'cors', body: form
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                if(data.emailError){
+                    setSignupError([{msg: data.emailError}])
+                }else if(data.errors) {
+                    setSignupError(data.errors)
+                }else{
+                    setSignEmail('');
+                    setSignFirstName('');
+                    setSignLastName('');
+                    setSignPassword('');
+                    setSignConfirmPassword('');
+                    setDob('');
+                    setSignupSuccess(data.success_message)
+                }
+            })
         }        
     };    
 
@@ -119,6 +171,7 @@ const Home = () => {
                 setProfilePic(file);
             })               
     };    
+    
 
     return(
         <div class = "homeMain" style={{minHeight: "inherit", backgroundColor: '#f0f2f5'}}>
@@ -147,7 +200,7 @@ const Home = () => {
                         <div class="mb-3"><input name = "confirm_password" id = "confirm_password" type="password" placeholder="Confirm Password" required="true"
                         class="form-control form-control-lg" value={signConfirmPassword} onChange={(e) => {setSignConfirmPassword(e.target.value)}}/></div>
                         <div class="mb-3">
-                            <label for = "signUpImage" className="signUpImgLabel">Profile Picture: </label>
+                            <label for = "signUpImage" className="signUpImgLabel">Profile Picture(optional):&nbsp;</label>
                             <input id="signUpImage" className="signUpImageInput"
                             name = "image" onChange={(e) => {handleImageUpload(e)}} type="file" accept="image/png, image/jpeg, image/jpg"/>
                         </div>
@@ -155,6 +208,21 @@ const Home = () => {
                             <label style={{width: '30%'}} class="fs-5" for = "date_of_birth" id = "date_of_birth">Date of birth: </label>
                             <input style={{width: '70%'}} name = "date_of_birth" id = "date_of_birth" type="date" required="true"
                         class="form-control form-control-lg" value={dob} onChange={(e) => setDob(e.target.value)}/></div>
+                        {
+                            signupError.length>0 &&
+                            signupError.slice(0,1).map((error) => {
+                                return (
+                                    <div class="alert alert-danger" role="alert" style={{ fontWeight: 'bold', maxWidth: '100%' }}>
+                                        <p style={{margin:'0', maxWidth: '20vw'}}>{error.msg}</p>
+                                    </div>
+                                )
+                            })                           
+                        }
+                        {
+                            signupSuccess && <div class="alert alert-success" role="alert" style={{ fontWeight: 'bold' }}>
+                                <p style={{margin:'0', maxWidth: '20vw'}}>{signupSuccess}</p>
+                         </div>
+                        }  
                         <button class="btn btn-warning fw-bold btn-lg" type="submit"
                         style={{width: '100%'}}>Sign Up!</button>
                     </form>
@@ -168,13 +236,18 @@ const Home = () => {
                         class="form-control form-control-lg" value={emailField} onChange={(e) => setEmailField(e.target.value)}/></div>
                         <div class="mb-3"><input name = "password" id = "password" type="password" placeholder="Password" required="true"
                         class="form-control form-control-lg" value={passField} onChange={(e) => setPassField(e.target.value)}/></div>
+                        {
+                            errorMsg && <div class="alert alert-danger" role="alert" style={{ fontWeight: 'bold' }}>
+                               <p style={{margin:'0', maxWidth: '23vw'}}>{errorMsg}</p>
+                            </div>
+                        }                        
                         <button class="btn btn-primary fw-bold btn-lg" type="submit"
                         style={{width: '100%'}}>Log in</button>
                     </form>
                     <button style={{width: '100%', lineHeight: '1.8rem'}}
                     class="btn btn-warning fw-bold " onClick={() => {setEmailField('');setPassField('');setShowSignUp(true)}}>Create New Account</button>
                     <button onClick={guestLogin} class="btn btn-secondary fw-bold " type="button"
-                    style={{width: '100%', lineHeight: '1.8rem'}}>Log in as a Guest</button>
+                    style={{width: '100%', lineHeight: '1.8rem'}}>Log in as a Guest</button>                    
                 </div>
                 }
             </div>

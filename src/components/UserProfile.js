@@ -405,8 +405,7 @@ const UserProfile = () => {
                 <div style={{minHeight: 'inherit'}}>
                 <NavbarComponent userImage = {userImg} user={user} logout={logout}/>
                 <div className="userProfileContainerCard">
-                <img src={require('../images/cover_photo.jpg')} className="coverPhoto"/>
-                <button className="addCoverPhotoBtn">Add cover photo</button>                 
+                <img src={require('../images/cover_photo.jpg')} className="coverPhoto"/>                                 
                 <div className="absoluteElementDiv">                   
                 <div className="userProfileUserInfo">
                     <div className="userProfileUserInfoLeft">                         
@@ -493,7 +492,7 @@ const UserProfile = () => {
                                 </div>
                                 <div className="profilePagePhotosContainer">
                                     {
-                                        profileFriends.slice(0,2).map((friend) => {
+                                        profileFriends.slice(0,3).map((friend) => {
                                             return(
                                                 <a className="linkToImageFriends" href={`/users/${friend._id}`}>
                                                     <img src={friend.profile_image} className="profileSingleImageFriend"/>

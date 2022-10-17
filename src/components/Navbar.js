@@ -46,8 +46,7 @@ const NavbarComponent = ({userImage, user, logout}) => {
           </div>
         </Menu>
       );
-      
-    
+          
     return (
         <Navbar style={{backgroundColor: 'white', boxShadow: '1px 4px 12px 0px rgba(0,0,0,0.07)',
         display: 'flex', justifyContent: 'space-between', padding: '0.5rem 1rem', width: '100%'}}>
