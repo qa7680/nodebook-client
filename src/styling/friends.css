@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik:500');
+
+.friendsPageTop{
+    display: flex;    
+    flex-direction: column;
+}
+.contactsUserImg{
+    width: 11vw;
+    height: 21vh;
+    object-fit: cover;
+    border-radius: 6px 6px 0px 0px;
+}
+.contactFirstLast{
+    margin: 0;
+    font-weight: bold;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 1rem;
+    color:#00449d;
+    cursor: pointer;
+    width: fit-content;
+}
+.contactFirstLast:hover{
+    text-decoration: underline;
+}
+.contactCard{
+    width: fit-content;
+    display: flex;    
+    flex-direction: column;
+    align-items: center;
+    border-radius: 6px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    padding-bottom: 1rem;
+}
+
+.contactFriendsBtn{
+    outline: none;
+    border: none;
+    font-size: large;
+    font-weight: bold;
+    background-color: #e7f3ff;
+    color: #1877f2;    
+    border-radius: 4px;
+    width: 100%;
+    padding: 0.3rem 1vw;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.contactFriendsBtn:hover{
+    background-color: #d5e2f1;
+}
+.contactFriendsBtnDiv{
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+}
+.contactFriendsBtnAccept{
+    outline: none;
+    border: none;
+    font-size: large;
+    font-weight: bold;
+    background-color: #20c46a;
+    color: white;    
+    border-radius: 4px;
+    width: 100%;
+    padding: 0.3rem 2vw;        
+}
+.contactFriendsBtnAccept:hover{
+    background-color: #2fa966;
+}
+.contactFriendsBtnDecline{
+    outline: none;
+    border: none;
+    font-size: large;
+    font-weight: bold;
+    background-color: rgb(239, 91, 91);
+    color: white;    
+    border-radius: 4px;
+    width: 100%;
+    padding: 0.3rem 2vw;   
+}
+.contactFriendsBtnDecline:hover{
+    background-color: rgb(195, 76, 76);
+}
+.contactFriendsBtnRequest{
+    outline: none;
+    border: none;    
+    font-weight: bold;
+    background-color: #fb791b;
+    color: white;    
+    border-radius: 4px;
+    width: 100%;
+    padding: 0.4rem 0.4vw;
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+}
+.contactFriendsBtnRequest:hover{
+    background-color: #c46018;
+}
+.requestAccpetedBtn{
+    outline: none;
+    border: none;
+    font-size: large;
+    font-weight: bold;
+    background-color: #e7f3ff;
+    color: #1877f2;    
+    border-radius: 4px;
+    width: 70%;
+    padding: 0.3rem 1vw;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.contactFriendsBtnUnfriended{
+    background-color: #ffc107;
+    color: black;
+    outline: none;
+    border: none;
+    font-size: large;
+    font-weight: bold;    
+    border-radius: 4px;
+    width: 100%;
+    padding: 0.3rem 1vw;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.emptyContacts{
+    min-height: 75vh;
+}
+.emptyContactsImg{
+    max-height: 75vh;
+    border-radius: 5px;
+}
+.emptyContactsImgBtn{
+    font-weight: bold;
+    font-size: large;
+    text-decoration: none;
+    background-color:  #FC6E51;
+    font-family: 'Rubik', sans-serif;
+    padding: 0.8rem 1rem;
+    border-radius: 4px;
+    color: white;
+    padding: 16px 42px;
+    box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.5);
+    font-size: 16px;
+    letter-spacing: .08em;
+}
+.emptyContactsImgBtn:hover{
+    background: darken(#FC6E51,7%);
+    color: white;
+}

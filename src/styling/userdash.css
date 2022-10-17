@@ -1,0 +1,232 @@
+.userDashMain{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+.userDashLeftItem:hover{
+    background: rgb(220, 220, 220);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.userDashLeftItem {
+    padding: 0.6rem 0.6rem;        
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.whatsOnMindInput{
+    width: 100%;
+    border: none;
+    background-color: #f3f4f6;
+    padding: 0.4rem 0.7rem;
+    border-radius: 12px; 
+    outline: none;
+    cursor: pointer;
+    caret-color: transparent;
+}
+.whatsOnMindInput:hover{
+    background-color: #e7e7e7;
+    transition: 0.21s;
+}
+.horizontalLine{
+    border-top: 1px solid grey;
+}
+.whatsOnMindIcons{
+    display: flex;
+    justify-content: center;
+}
+.whatsOnMindIconsItems{
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    color: grey;
+    cursor: pointer;
+    padding: 0.5rem 1.3rem;
+}
+.whatsOnMindIconsItems:hover{
+    background-color: rgb(231, 231, 231);
+    border-radius: 8px;
+}
+.textAreaPost{
+    width: 100%;
+    border:none;
+    font-size: 20px;
+    resize: none;
+    height: 12vh;
+}
+.textAreaPost:focus{
+    outline: none;
+}
+.textAreaPost::placeholder{
+    color: grey;
+}
+.addPhotosVideosBtn,
+.uploadBtn,
+.postBtn{
+    width: 100%;
+}
+.addPhotosVideosBtn{
+    display: none;
+}
+.addPhotosVideosBtnLabel{
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    padding: 2rem;
+    background-color: rgb(234, 232, 232);
+    border-radius: 8px;
+    border: 1px dashed grey;
+}
+.addPhotosVideosBtnLabel:hover{
+    background-color: rgb(228, 225, 225);
+}
+.uploadBtn, .postBtn{
+    border: none;
+    padding: 0.4rem;
+    border-radius: 8px;
+}
+.uploadBtn{
+    background-color: #22c55e;
+    color: white;
+    font-weight: bold;
+}
+.uploadBtn:hover{
+    background-color: #21ab54;
+}
+.postBtn{
+    background-color: #1b74e4;
+    color: white;
+    font-weight: bold;
+}
+.postBtn:hover{
+    background-color: #0a68dc;
+}
+.ellipsisFont{
+    color: #606266;
+    font-size: large;
+    padding: 0.5rem;
+}
+.ellipsisFont:hover{
+    background-color: rgb(242,242,242);
+    cursor: pointer;
+    border-radius: 900%;
+}
+.postIcons{
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1.5rem;
+}
+.postIcons:hover{
+    cursor: pointer;
+    background-color: rgb(242,242,242);
+    border-radius: 8px;
+}
+.commentInput{
+    border: none;
+    background-color: rgb(242,242,242);
+    width: 100%;
+    outline: none;
+    border: 1px solid rgb(225, 225, 225);
+    padding: 0.40rem 0.78rem;
+    border-radius: 20px;
+}
+.postCommentDiv{
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    padding: 1rem 0;    
+}
+.showCommentsSection{
+    display: flex;
+    gap: 0.5rem;
+    overflow: 'hidden';
+    padding-top: 1.2rem;
+}
+.postComment{
+    background-color: rgb(242,242,242);
+    padding: 0.5rem 0.7rem;
+    border-radius: 16px;
+}
+.commentCommentComment{
+    font-size: 15px;
+    margin: 0;
+}
+.timeComment{
+    padding: 0.2rem;
+    color: rgb(118, 118, 118);
+    font-size: 14px;
+}
+.showAllCommentsLink{
+    color: rgb(17, 37, 61);
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+    padding-bottom: 1rem;
+}
+.commentsLength{
+    padding:  0.4rem;
+    padding-top: 1rem;
+    cursor: pointer;
+    color:#163963;
+    font-weight: bold;
+    width: fit-content;
+}
+.commentsLength:hover{
+    text-decoration: underline;    
+}
+.imagePreviewPost{
+    width: 100%;        
+    border-radius: 10px;    
+    display: flex; 
+}
+.imagepreviewContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.removePhoto{
+    width: 100%;
+}
+.postImage{
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+}
+.ellipsisComment{
+    align-self: flex-end;
+    margin-bottom:1.5rem;
+    color: transparent;
+    padding: 0.3rem;
+    border-radius: 900%;
+    cursor: pointer;
+}
+.showCommentsSection:hover .ellipsisComment{
+    color: inherit;
+}
+.ellipsisComment:hover{
+    background-color: rgb(221, 221, 221);
+}
+.routeLinks{
+    text-decoration: none;
+    color: inherit;
+}
+.routeLinks:hover{
+    color: inherit;
+}
+.leftDashLinks{
+    width: 60%;
+}
+.contactsItem{
+    display: flex;
+    gap: 0.5rem;
+    font-weight: bold; 
+    cursor: pointer;   
+    align-items: center;
+    padding: 0.4rem 0.4rem;    
+    border-radius: 6px;
+}
+.contactsItem:hover{
+    background-color: rgb(219, 219, 219);
+}

@@ -1,0 +1,67 @@
+.midIcon{
+    cursor: pointer;
+    padding: 1rem 2.5rem;
+    border-radius: 6px;
+}
+.midIcon:hover{
+    background-color: rgb(230, 230, 230);
+}
+.rightIcon{
+    background-color: rgb(222, 222, 222);
+    padding: 0.8rem;
+    border-radius: 900%;
+    cursor: pointer;
+}
+.popoutIcon{
+    padding: 0.8rem;
+    border-radius: 900%;
+    background-color: rgb(222, 222, 222);
+}
+.rightIcon:hover{
+    background-color: rgb(191, 191, 191);
+}
+.iconLinks{
+    display: flex;
+}
+.popoutCard{
+    background: white;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid rgb(224, 224, 224);
+    margin-top: 0.6rem;
+    font-family: helvetica;
+    font-size:medium;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.popoutMenu{
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.4rem;
+    padding-right: 6rem;
+}
+.popoutMenu:hover{
+    background: rgb(232, 232, 232);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.vl{
+    border-bottom: 1px solid rgb(232, 232, 232);
+    width: 100%;
+}
+.deleteMenu{
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;       
+    padding: 0.3rem; 
+    padding-right: 2rem;        
+}
+.deleteMenu:hover{
+    background: rgb(232, 232, 232);
+    border-radius: 8px;
+    cursor: pointer;    
+}

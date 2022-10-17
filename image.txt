@@ -1,0 +1,7 @@
+{
+          data.map((singleData) => {
+            const blob = new Blob([Int8Array.from(singleData.image.data.data)], {type: singleData.image.contentType});
+            const image = window.URL.createObjectURL(blob);
+            return <img src = {image} style={{ width: '200px', height: '200px',borderRadius: '900%' }}/>
+          })
+}
