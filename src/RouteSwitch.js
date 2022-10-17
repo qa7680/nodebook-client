@@ -7,6 +7,7 @@ import FindFriends from './components/FindFriends';
 import Friends from './components/Friends';
 import UserProfile from './components/UserProfile';
 import Settings from './components/Settings';
+import ErrorPage from './components/404';
 
 const RouteSwitch = () => {
  
@@ -21,7 +22,8 @@ const RouteSwitch = () => {
                             <Route path = "/discover" element = { <FindFriends /> } />
                             <Route path = "/friends" element = { <Friends /> } />                            
                             <Route path = "/users/:userId" element = { <UserProfile /> } /> 
-                            <Route path = "/settings" element = { <Settings /> } />                            
+                            <Route path = "/settings" element = { <Settings /> } />     
+                            <Route path = "*" element = { <ErrorPage /> } />                            
                         </Routes>
                     </UserContext.Provider>
                     </BrowserRouter>
