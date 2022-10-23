@@ -230,3 +230,15 @@
 .contactsItem:hover{
     background-color: rgb(219, 219, 219);
 }
+
+@media (max-width: 1369px) {    
+    .userDashCenter{
+        min-width: 40%;
+    }    
+    .userDashLeft{
+        min-width: 25%;
+    }
+    .userDashRight{
+        min-width: 25%;
+    }
+}
