@@ -31,7 +31,7 @@ const UserDashboard = () => {
 
     // fetch user 
     function fetchUser() {
-        fetch(`https://cryptic-earth-09230.herokuapp.com/users/${userObject.user}`, { mode: 'cors', method: 'GET' })
+        fetch(`https://qa7680-nodebook-api.onrender.com/users/${userObject.user}`, { mode: 'cors', method: 'GET' })
             .then(res => res.json())
             .then(data => {
                 if(data.user.profile_pic){
@@ -48,7 +48,7 @@ const UserDashboard = () => {
 
     // fetch user timeline posts
     function fetchTimeline() {
-        fetch(`https://cryptic-earth-09230.herokuapp.com/users/${userObject.user}/timeline`, {
+        fetch(`https://qa7680-nodebook-api.onrender.com/users/${userObject.user}/timeline`, {
                     mode: 'cors', method: 'GET'
                 })
                     .then(resTwo => resTwo.json())
@@ -96,7 +96,7 @@ const UserDashboard = () => {
 
     // fetch user friends
     const fetchUserFriends = () => {
-        fetch(`https://cryptic-earth-09230.herokuapp.com/users/${userObject.user}/friends`, {
+        fetch(`https://qa7680-nodebook-api.onrender.com/users/${userObject.user}/friends`, {
             mode: 'cors', method: 'GET'
         })
             .then(res => res.json())
@@ -198,7 +198,7 @@ const UserDashboard = () => {
     // Like a post
     const likePost = (post) => {
         if (!post.likes.includes(userObject.user)) {
-        fetch(`https://cryptic-earth-09230.herokuapp.com/posts/${post._id}/like`, {
+        fetch(`https://qa7680-nodebook-api.onrender.com/posts/${post._id}/like`, {
             mode: 'cors', method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
                 userId: userObject.user
             })
@@ -220,7 +220,7 @@ const UserDashboard = () => {
     // Unlike a post
     const unlikePost = (post) => {
         if(post.likes.includes(userObject.user)){
-            fetch(`https://cryptic-earth-09230.herokuapp.com/posts/${post._id}/unlike`, {
+            fetch(`https://qa7680-nodebook-api.onrender.com/posts/${post._id}/unlike`, {
                 mode: 'cors', method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({
                     userId: userObject.user
                 })
@@ -243,7 +243,7 @@ const UserDashboard = () => {
     // add a comment
     const addComment = (e, post) => {
         e.preventDefault();
-        fetch(`https://cryptic-earth-09230.herokuapp.com/posts/${post._id}/comments` , {
+        fetch(`https://qa7680-nodebook-api.onrender.com/posts/${post._id}/comments` , {
             mode: 'cors', method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
                 author: userObject.user,
                 comment: commentField
@@ -312,7 +312,7 @@ const UserDashboard = () => {
 
     // Delete post
     const deletePost = (post) => {
-        fetch(`https://cryptic-earth-09230.herokuapp.com/posts/${post._id}`, {
+        fetch(`https://qa7680-nodebook-api.onrender.com/posts/${post._id}`, {
         mode: 'cors', method: 'DELETE'
     })
         .then(res => res.json())
@@ -339,7 +339,7 @@ const UserDashboard = () => {
     
     // delete comment
     const deleteComment = (comment) => {
-        fetch(`https://cryptic-earth-09230.herokuapp.com/comments/${comment._id}`, {
+        fetch(`https://qa7680-nodebook-api.onrender.com/comments/${comment._id}`, {
             mode: 'cors', method: 'DELETE'
         })
             .then(res => res.json())

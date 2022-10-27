@@ -28,7 +28,7 @@ const Home = () => {
     const loginUser = (e) => {
         setErrorMsg(false);
         e.preventDefault();
-            fetch('https://cryptic-earth-09230.herokuapp.com/login', {
+            fetch('https://qa7680-nodebook-api.onrender.com/login', {
             method: 'POST', mode: 'cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
                 email: emailField,
                 password: passField
@@ -64,7 +64,7 @@ const Home = () => {
         setEmailField('usertest@mail.com');
         setPassField('password');
         setTimeout(() => {
-        fetch('https://cryptic-earth-09230.herokuapp.com/login', {
+        fetch('https://qa7680-nodebook-api.onrender.com/login', {
             method: 'POST', mode: 'cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
                 email: 'usertest@mail.com',
                 password: 'password'
@@ -108,7 +108,7 @@ const Home = () => {
         form.append('image', profilePic);
 
         if(profilePic===false || profilePic===undefined){
-            fetch('https://cryptic-earth-09230.herokuapp.com/signup/noimage', {
+            fetch('https://qa7680-nodebook-api.onrender.com/signup/noimage', {
             method: 'POST', mode: 'cors', body: form , headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
                 email: signEmail,
                 first_name: signFirstName,
@@ -136,7 +136,7 @@ const Home = () => {
             })    
             
         }else{
-            fetch('https://cryptic-earth-09230.herokuapp.com/signup', {
+            fetch('https://qa7680-nodebook-api.onrender.com/signup', {
             method: 'POST', mode: 'cors', body: form
         })
             .then(res => res.json())

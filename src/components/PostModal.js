@@ -31,7 +31,7 @@ const PostModal = ({show, handleClose, handleSubmit, first_name}) => {
     // add a post with an optional image
     const addPost = (e) => {
         e.preventDefault();        
-        fetch('https://cryptic-earth-09230.herokuapp.com/posts', {
+        fetch('https://qa7680-nodebook-api.onrender.com/posts', {
             mode: 'cors', method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
                 post: postText,
                 author: userObject.user
@@ -45,7 +45,7 @@ const PostModal = ({show, handleClose, handleSubmit, first_name}) => {
                 form.append('postId', data.post._id)
                 
                 if(postImage.file !== null) {
-                fetch(`https://cryptic-earth-09230.herokuapp.com/users/${userObject.user}/image/post`, {
+                fetch(`https://qa7680-nodebook-api.onrender.com/users/${userObject.user}/image/post`, {
                     mode: 'cors', method: 'POST', body: form
                 })
                     .then(resTwo => resTwo.json())

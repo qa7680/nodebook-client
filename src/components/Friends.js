@@ -21,7 +21,7 @@ const Friends = () => {
 
     // fetch user 
     function fetchUser() {
-        fetch(`https://cryptic-earth-09230.herokuapp.com/users/${userObject.user}`, { mode: 'cors', method: 'GET' })
+        fetch(`https://qa7680-nodebook-api.onrender.com/users/${userObject.user}`, { mode: 'cors', method: 'GET' })
             .then(res => res.json())
             .then(data => {               
                 if(data.user.profile_pic){
@@ -39,7 +39,7 @@ const Friends = () => {
     // fetch friends status
     const fetchStatus = () => {
         setLoadingContacts(true);
-        fetch(`https://cryptic-earth-09230.herokuapp.com/users/${userObject.user}/friends`, {
+        fetch(`https://qa7680-nodebook-api.onrender.com/users/${userObject.user}/friends`, {
             mode: 'cors', method: 'GET'
         })
             .then(res => res.json())
@@ -115,7 +115,7 @@ const Friends = () => {
 
     // unfriend a user
     const unfriend = (user) => {
-        fetch(`https://cryptic-earth-09230.herokuapp.com/users/${userObject.user}/unfriend`, {
+        fetch(`https://qa7680-nodebook-api.onrender.com/users/${userObject.user}/unfriend`, {
             mode: 'cors', method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
                 requester: user._id
             })
@@ -133,7 +133,7 @@ const Friends = () => {
 
     // accept a friend request
     const acceptRequest = (user) => {
-        fetch(`https://cryptic-earth-09230.herokuapp.com/users/${userObject.user}/accept`, {
+        fetch(`https://qa7680-nodebook-api.onrender.com/users/${userObject.user}/accept`, {
             mode: 'cors', method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
                 requester: user._id
             })
@@ -148,7 +148,7 @@ const Friends = () => {
 
     // decline a friend request
     const declineRequest = (user) => {
-        fetch(`https://cryptic-earth-09230.herokuapp.com/users/${userObject.user}/decline`, {
+        fetch(`https://qa7680-nodebook-api.onrender.com/users/${userObject.user}/decline`, {
             mode: 'cors', method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
                 requester: user._id
             })
@@ -164,7 +164,7 @@ const Friends = () => {
 
     // cancel a request sent
     const cancelRequest = (user) => {
-        fetch(`https://cryptic-earth-09230.herokuapp.com/users/${userObject.user}/cancel`, {
+        fetch(`https://qa7680-nodebook-api.onrender.com/users/${userObject.user}/cancel`, {
             mode: 'cors', method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
                 recipient: user._id
             })

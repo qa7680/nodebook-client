@@ -21,7 +21,7 @@ const Settings = () => {
 
     // fetch user 
     function fetchUser() {
-        fetch(`https://cryptic-earth-09230.herokuapp.com/users/${userObject.user}`, { mode: 'cors', method: 'GET' })
+        fetch(`https://qa7680-nodebook-api.onrender.com/users/${userObject.user}`, { mode: 'cors', method: 'GET' })
             .then(res => res.json())
             .then(data => {
                 if(data.user.profile_pic){
@@ -69,7 +69,7 @@ const Settings = () => {
 
     // delete account
     const deleteAccount = () => {
-        fetch(`https://cryptic-earth-09230.herokuapp.com/users/${userObject.user}`, {
+        fetch(`https://qa7680-nodebook-api.onrender.com/users/${userObject.user}`, {
             mode: 'cors', method: 'DELETE'
         })
             .then(res => res.json())

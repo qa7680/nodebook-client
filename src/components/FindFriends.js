@@ -19,7 +19,7 @@ const FindFriends = () => {
 
     // fetch user 
     function fetchUser() {
-        fetch(`https://cryptic-earth-09230.herokuapp.com/users/${userObject.user}`, { mode: 'cors', method: 'GET' })
+        fetch(`https://qa7680-nodebook-api.onrender.com/users/${userObject.user}`, { mode: 'cors', method: 'GET' })
             .then(res => res.json())
             .then(data => {               
                 if(data.user.profile_pic){
@@ -37,7 +37,7 @@ const FindFriends = () => {
     // fetch user discover
     function fetchDiscover() {
         setLoadingDiscover(true);
-        fetch(`https://cryptic-earth-09230.herokuapp.com/users/${userObject.user}/discover`, { mode: 'cors', method: 'GET' })
+        fetch(`https://qa7680-nodebook-api.onrender.com/users/${userObject.user}/discover`, { mode: 'cors', method: 'GET' })
             .then(res => res.json())
             .then(data => {
                 var arr = []
@@ -90,7 +90,7 @@ const FindFriends = () => {
 
     // send friend request
     const addFriend = (recipient) => {
-        fetch(`https://cryptic-earth-09230.herokuapp.com/users/${userObject.user}/request`, {
+        fetch(`https://qa7680-nodebook-api.onrender.com/users/${userObject.user}/request`, {
             mode: 'cors', method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
                 recipient: recipient._id
             })
@@ -109,7 +109,7 @@ const FindFriends = () => {
 
     // Cancel friend request    
     const cancelRequest = (recipient) => {
-        fetch(`https://cryptic-earth-09230.herokuapp.com/users/${userObject.user}/cancel`, {
+        fetch(`https://qa7680-nodebook-api.onrender.com/users/${userObject.user}/cancel`, {
             mode: 'cors', method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
                 recipient: recipient._id
             })
