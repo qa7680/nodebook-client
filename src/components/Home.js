@@ -5,6 +5,7 @@ import { UserContext } from "../UserContext";
 import { useNavigate } from "react-router-dom";
 import imageCompression from 'browser-image-compression';
 import { FacebookLoginButton } from "react-social-login-buttons";
+import { Spinner } from "react-bootstrap";
 
 const Home = () => {
 
@@ -21,12 +22,14 @@ const Home = () => {
     const [errorMsg, setErrorMsg] = useState(false);
     const [signupError, setSignupError] = useState([]);
     const [signupSuccess, setSignupSuccess] = useState('');
+    const [serverLoading, setServerLoading] = useState(false);
 
     const {userObject, setUserObject} = useContext(UserContext);
     
     // Login handle
     const loginUser = (e) => {
         setErrorMsg(false);
+        setServerLoading(true);
         e.preventDefault();
             fetch('https://qa7680-nodebook-api.onrender.com/login', {
             method: 'POST', mode: 'cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
@@ -53,8 +56,9 @@ const Home = () => {
                     setSignConfirmPassword('');
                     setDob('');
                     setSignupError([]);
+                    setServerLoading(false);
                 }
-                if(data.error) { setErrorMsg(data.error.message) };
+                if(data.error) { setErrorMsg(data.error.message); setServerLoading(false); };
             });        
     };
 
@@ -63,6 +67,7 @@ const Home = () => {
         setErrorMsg(false);
         setEmailField('usertest@mail.com');
         setPassField('password');
+        setServerLoading(true);
         setTimeout(() => {
         fetch('https://qa7680-nodebook-api.onrender.com/login', {
             method: 'POST', mode: 'cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
@@ -86,7 +91,8 @@ const Home = () => {
                 setSignPassword('');
                 setSignConfirmPassword('');
                 setDob('');   
-                setSignupError([]);             
+                setSignupError([]);
+                setServerLoading(false);             
             });
         }, 500)
     };
@@ -97,6 +103,7 @@ const Home = () => {
 
         setSignupSuccess(false);
         setSignupError([]);
+        setServerLoading(true);
 
         const form = new FormData();
         form.append('email', signEmail);
@@ -121,17 +128,20 @@ const Home = () => {
             .then(res => res.json())
             .then(data => {
                 if(data.emailError){
-                    setSignupError([{msg: data.emailError}])
+                    setSignupError([{msg: data.emailError}]);
+                    setServerLoading(false);
                 }else if(data.errors) { 
-                    setSignupError(data.errors)
-                }else{
+                    setSignupError(data.errors);
+                    setServerLoading(false);
+                }else{                    
                     setSignEmail('');
                     setSignFirstName('');
                     setSignLastName('');
                     setSignPassword('');
                     setSignConfirmPassword('');
                     setDob('');
-                    setSignupSuccess(data.success_message)
+                    setSignupSuccess(data.success_message);
+                    setServerLoading(false);
                 }
             })    
             
@@ -142,9 +152,11 @@ const Home = () => {
             .then(res => res.json())
             .then(data => {
                 if(data.emailError){
-                    setSignupError([{msg: data.emailError}])
+                    setSignupError([{msg: data.emailError}]);
+                    setServerLoading(false);
                 }else if(data.errors) {
-                    setSignupError(data.errors)
+                    setSignupError(data.errors);
+                    setServerLoading(false);
                 }else{
                     setSignEmail('');
                     setSignFirstName('');
@@ -152,7 +164,8 @@ const Home = () => {
                     setSignPassword('');
                     setSignConfirmPassword('');
                     setDob('');
-                    setSignupSuccess(data.success_message)
+                    setSignupSuccess(data.success_message);
+                    setServerLoading(false);
                 }
             })
         }        
@@ -169,10 +182,12 @@ const Home = () => {
         imageCompression(imageFile, options)
             .then((file) => {
                 setProfilePic(file);
+            }).catch(() => {
+                setProfilePic(false);
             })               
     };    
+    console.log(profilePic);
     
-
     return(
         <div class = "homeMain" style={{minHeight: "inherit", backgroundColor: '#f0f2f5'}}>
             {
@@ -208,6 +223,14 @@ const Home = () => {
                             <label style={{width: '30%'}} class="fs-5" for = "date_of_birth" id = "date_of_birth">Date of birth: </label>
                             <input style={{width: '70%'}} name = "date_of_birth" id = "date_of_birth" type="date" required="true"
                         class="form-control form-control-lg" value={dob} onChange={(e) => setDob(e.target.value)}/></div>
+                        {serverLoading &&
+                        <div style={{display: 'flex',justifyContent: 'center', paddingBottom: '1rem', 
+                        alignItems: 'center', gap: '0.5rem', flexDirection: 'column'}}>
+                            <p style={{margin: '0', fontWeight: 'bold', 
+                            fontFamily: 'inherit'}}>Handling request..please give it a few seconds.</p>
+                            <Spinner animation="grow"  variant="secondary" />
+                        </div>
+                        }
                         {
                             signupError.length>0 &&
                             signupError.slice(0,1).map((error) => {
@@ -227,7 +250,7 @@ const Home = () => {
                         style={{width: '100%'}}>Sign Up!</button>
                     </form>
                     <button class="btn btn-primary fw-bold btn-lg" type="button"
-                        style={{width: '100%'}} onClick={ () => setShowSignUp(false) }>Log in</button>
+                        style={{width: '100%'}} onClick={ () => {setShowSignUp(false); setProfilePic(false);}}>Log in</button>
                 </div>
                 :
                 <div class="card-body" style={{gap: '0.65rem', padding: '2rem',display: 'flex', flexDirection: 'column', borderRadius: '6px'}}>
@@ -240,12 +263,20 @@ const Home = () => {
                             errorMsg && <div class="alert alert-danger" role="alert" style={{ fontWeight: 'bold' }}>
                                <p style={{margin:'0', maxWidth: '23vw'}}>{errorMsg}</p>
                             </div>
-                        }                        
+                        }
+                        {serverLoading &&
+                        <div style={{display: 'flex',justifyContent: 'center', paddingBottom: '1rem', 
+                        alignItems: 'center', gap: '0.5rem', flexDirection: 'column'}}>
+                            <p style={{margin: '0', fontWeight: 'bold', 
+                            fontFamily: 'inherit'}}>Waking API up...please give it a few seconds.</p>
+                            <Spinner animation="grow"  variant="secondary" />
+                        </div>
+                        }
                         <button class="btn btn-primary fw-bold btn-lg" type="submit"
                         style={{width: '100%'}}>Log in</button>
                     </form>
                     <button style={{width: '100%', lineHeight: '1.8rem'}}
-                    class="btn btn-warning fw-bold " onClick={() => {setEmailField('');setPassField('');setShowSignUp(true)}}>Create New Account</button>
+                    class="btn btn-warning fw-bold " onClick={() => {setEmailField('');setPassField('');setShowSignUp(true);setErrorMsg(false);}}>Create New Account</button>
                     <button onClick={guestLogin} class="btn btn-secondary fw-bold " type="button"
                     style={{width: '100%', lineHeight: '1.8rem'}}>Log in as a Guest</button>                    
                 </div>
