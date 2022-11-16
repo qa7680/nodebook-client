@@ -190,7 +190,10 @@ const UserDashboard = () => {
         const formatted = time.split(' ');
         if(time === 'now') {return 'now'} else if(time === 'yesterday') {
             return '1d'
-        } else{
+        }else if(time === 'last month') {
+            return 'last month'
+        }
+        else{
             return formatted[0].concat(formatted[1].charAt(0))
         };
     };
