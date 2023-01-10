@@ -188,10 +188,13 @@ const UserDashboard = () => {
         });
         const time =  relativeFormatter.format(Math.trunc(diff.as(unit)), unit);
         const formatted = time.split(' ');
+        const allMonths = ['last month', '2 months ago', '3 months ago', '4 months ago', 
+                        '5 months ago', '6 months ago', '7 months ago', '8 months ago', 
+                        '9 months ago', '10 months ago', '11 months ago']
         if(time === 'now') {return 'now'} else if(time === 'yesterday') {
             return '1d'
-        }else if(time === 'last month') {
-            return 'last month'
+        }else if(allMonths.includes(time)) {
+            return time
         }
         else{
             return formatted[0].concat(formatted[1].charAt(0))
